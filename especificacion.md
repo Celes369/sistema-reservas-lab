@@ -1,7 +1,7 @@
 # Especificación: Sistema de Reservas de Laboratorio
 
 ## Reglas de Negocio:
-1. **Inventario:** Leer el archivo `inventorio.json`.
+1. **Inventario:** Leer el archivo `inventario.json`.
 2. **Reservas:** 
    - Una reserva debe tener: ID de unidad, solicitante (no vacío ni solo espacios), fecha/hora de inicio y fecha/hora de fin.
    - El inicio debe ser estrictamente anterior al fin.
