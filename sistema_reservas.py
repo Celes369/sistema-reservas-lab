@@ -9,6 +9,7 @@ from pathlib import Path
 from uuid import uuid4
 
 INVENTARIO_PATH = Path(__file__).resolve().parent / "inventario.json"
+RESERVAS_PATH = Path(__file__).resolve().parent / "reservas.json"
 
 
 class ReservaError(Exception):
@@ -32,11 +33,17 @@ class Reserva:
 
 
 class SistemaReservas:
-    def __init__(self, inventario_path: Path | str | None = None) -> None:
+    def __init__(
+        self,
+        inventario_path: Path | str | None = None,
+        reservas_path: Path | str | None = None,
+    ) -> None:
         self._inventario_path = Path(inventario_path) if inventario_path else INVENTARIO_PATH
+        self._reservas_path = Path(reservas_path) if reservas_path else RESERVAS_PATH
         self.unidades: dict[str, Unidad] = {}
         self.reservas: list[Reserva] = []
         self.cargar_inventario()
+        self.cargar_reservas()
 
     def cargar_inventario(self) -> dict[str, Unidad]:
         if not self._inventario_path.is_file():
@@ -86,7 +93,62 @@ class SistemaReservas:
             fin=fin_dt,
         )
         self.reservas.append(reserva)
+        self.guardar_reservas()
         return reserva
+
+    def cancelar_reserva(self, reserva_id: str) -> Reserva:
+        reserva = self._buscar_reserva(reserva_id)
+        if reserva.cancelada:
+            raise ReservaError(f"La reserva '{reserva_id}' ya está cancelada")
+
+        reserva.cancelada = True
+        self.guardar_reservas()
+        return reserva
+
+    def cargar_reservas(self) -> list[Reserva]:
+        if not self._reservas_path.is_file():
+            self.reservas = []
+            return self.reservas
+
+        with self._reservas_path.open(encoding="utf-8") as archivo:
+            datos = json.load(archivo)
+
+        reservas: list[Reserva] = []
+        for item in datos:
+            reservas.append(
+                Reserva(
+                    id=item["id"],
+                    unidad_id=item["unidad_id"],
+                    solicitante=item["solicitante"],
+                    inicio=self._parsear_fecha(item["inicio"], "inicio"),
+                    fin=self._parsear_fecha(item["fin"], "fin"),
+                    cancelada=bool(item.get("cancelada", False)),
+                )
+            )
+
+        self.reservas = reservas
+        return self.reservas
+
+    def guardar_reservas(self) -> None:
+        payload = [
+            {
+                "id": reserva.id,
+                "unidad_id": reserva.unidad_id,
+                "solicitante": reserva.solicitante,
+                "inicio": reserva.inicio.isoformat(),
+                "fin": reserva.fin.isoformat(),
+                "cancelada": reserva.cancelada,
+            }
+            for reserva in self.reservas
+        ]
+        with self._reservas_path.open("w", encoding="utf-8") as archivo:
+            json.dump(payload, archivo, ensure_ascii=False, indent=2)
+
+    def _buscar_reserva(self, reserva_id: str) -> Reserva:
+        for reserva in self.reservas:
+            if reserva.id == reserva_id:
+                return reserva
+        raise ReservaError(f"No existe una reserva con id '{reserva_id}'")
 
     def _parsear_fecha(self, valor: datetime | str, campo: str) -> datetime:
         if isinstance(valor, datetime):
