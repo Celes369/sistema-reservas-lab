@@ -1,0 +1,74 @@
+[
+  {
+    "id": "5224cd79-ca44-41c3-9c5f-d5316769b5b4",
+    "unidad_id": "MIC-01",
+    "solicitante": "Estudiante Test",
+    "inicio": "2026-11-01T14:00:00",
+    "fin": "2026-11-01T16:00:00",
+    "cancelada": true
+  },
+  {
+    "id": "f3c69218-12e2-4dd0-8834-834220ef1d3f",
+    "unidad_id": "MIC-01",
+    "solicitante": "Estudiante Test",
+    "inicio": "2026-11-01T14:00:00",
+    "fin": "2026-11-01T16:00:00",
+    "cancelada": true
+  },
+  {
+    "id": "af3e7651-eff3-4501-86b2-f5cdd13f1624",
+    "unidad_id": "MIC-01",
+    "solicitante": "Estudiante Test",
+    "inicio": "2026-11-01T14:00:00",
+    "fin": "2026-11-01T16:00:00",
+    "cancelada": true
+  },
+  {
+    "id": "c8543dc1-98c0-4af9-bc93-190553d3fe1b",
+    "unidad_id": "MIC-01",
+    "solicitante": "Juan Pérez",
+    "inicio": "2026-10-28T10:00:00",
+    "fin": "2026-10-28T12:00:00",
+    "cancelada": true
+  },
+  {
+    "id": "b5f93b1e-1a11-4826-a32b-20776cd16642",
+    "unidad_id": "MIC-01",
+    "solicitante": "Carla Gomez",
+    "inicio": "2026-10-27T09:00:00",
+    "fin": "2026-10-27T11:00:00",
+    "cancelada": true
+  },
+  {
+    "id": "20f84792-8fe7-49de-829b-982571fde704",
+    "unidad_id": "MIC-01",
+    "solicitante": "dedewdwefwegfDC",
+    "inicio": "2026-10-27T09:00:00",
+    "fin": "2026-10-27T11:00:00",
+    "cancelada": false
+  },
+  {
+    "id": "4cc6a335-d187-403a-9073-e1d2bde7232c",
+    "unidad_id": "MIC-02",
+    "solicitante": "dedewdwefwegfDC",
+    "inicio": "2026-10-27T09:00:00",
+    "fin": "2026-10-27T11:00:00",
+    "cancelada": false
+  },
+  {
+    "id": "e66681b8-02e0-4eee-beaa-78998ff6facc",
+    "unidad_id": "OSC-01",
+    "solicitante": "dedewdwefwegfDC",
+    "inicio": "2026-10-27T09:00:00",
+    "fin": "2026-10-27T11:00:00",
+    "cancelada": false
+  },
+  {
+    "id": "644ce387-1574-4bca-9a33-0e05e8bbcd3f",
+    "unidad_id": "FUE-01",
+    "solicitante": "dedewdwefwegfDC",
+    "inicio": "2026-10-27T10:00:00",
+    "fin": "2026-10-27T11:00:00",
+    "cancelada": false
+  }
+]
